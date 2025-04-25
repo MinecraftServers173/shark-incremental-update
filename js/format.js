@@ -3,14 +3,14 @@ const EINF = Decimal.dInf
 
 const ST_NAMES = [
 	null, [
-		["","U","D","T","Qa","Qt","Sx","Sp","Oc","No"],
-		["","Dc","Vg","Tg","Qag","Qtg","Sxg","Spg","Ocg","Nog"],
-		["","Ce","De","Te","Qae","Qte","Sxe","Spe","Oce","Noe"],
+		["","U","D","T","Qa","Qi","Sx","Sp","O","N"],
+		["","D","V","Tg","Qd","Qn","Sg","St","Og","Ng"],
+		["","C","Du","Tc","Qe","Qu","Se","Si","Oe","Nt"],
 	],[
-		["","Mi","Mc","Na","Pc","Fm","At","Zp","Yc","Xn"],
-		["","Me","Du","Tr","Te","Pe","He","Hp","Ot","En"],
-		["","c","Ic","TCn","TeC","PCn","HCn","HpC","OCn","ECn"],
-		["","Hc","DHe","THt","TeH","PHc","HHe","HpH","OHt","EHc"]
+		["","Mil","Mic","Nan","Pic","Fem","Att","Zep","Yoc","Xon"],
+		["","Mec","Duec","Trec","Tec","Pec","Hec","Hpc","Otc","Enc"],
+		["","c","Ico","Trc","Tetc","Pntc","Hxcn","Hptcn","Octcn","Enct"],
+		["","Hec","Dec","Thet","Teht","Pnthc","Hexe","Hpth","Ohtco","Ech"]
 	]
 ]
 
@@ -414,23 +414,23 @@ function formatGain(a,e) {
 
 function formatTime(ex,acc=0,type="s") {
   ex = E(ex)
-  if (ex.mag == Infinity) return 'Forever'
+  if (ex.mag == Infinity) return 'what'
   if (ex.gte(31536000)) {
-    return format(ex.div(31536000).floor(),0)+"y"+(ex.div(31536000).gte(1e9) ? "" : " " + formatTime(ex.mod(31536000),acc,'y'))
+    return format(ex.div(31536000).floor(),0)+"years"+(ex.div(31536000).gte(1e9) ? "" : " " + formatTime(ex.mod(31536000),acc,'y'))
   }
   if (ex.gte(86400)) {
     var n = ex.div(86400).floor()
-    return (n.gt(0) || type == "d"?format(ex.div(86400).floor(),0)+"d ":"")+formatTime(ex.mod(86400),acc,'d')
+    return (n.gt(0) || type == "days"?format(ex.div(86400).floor(),0)+"d ":"")+formatTime(ex.mod(86400),acc,'d')
   }
   if (ex.gte(3600)) {
     var n = ex.div(3600).floor()
-    return (n.gt(0) || type == "h"?format(ex.div(3600).floor(),0)+"h ":"")+formatTime(ex.mod(3600),acc,'h')
+    return (n.gt(0) || type == "hours"?format(ex.div(3600).floor(),0)+"h ":"")+formatTime(ex.mod(3600),acc,'h')
   }
   if (ex.gte(60)) {
     var n = ex.div(60).floor()
-    return (n.gt(0) || type == "m"?format(n,0)+"m ":"")+formatTime(ex.mod(60),acc,'m')
+    return (n.gt(0) || type == "minutes"?format(n,0)+"m ":"")+formatTime(ex.mod(60),acc,'m')
   }
-  return ex.gt(0) || type == "s"?format(ex,acc)+"s":""
+  return ex.gt(0) || type == "seconds"?format(ex,acc)+"s":""
 }
 
 function formatReduction(ex,acc) { return format(Decimal.sub(1,ex).mul(100),acc)+"%" }
