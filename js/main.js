@@ -170,7 +170,13 @@ const PROGRESS = [
         get amount() { return CURRENCIES.hadron.total },
         require: 'e1e6',
         logHeight: 1,
-    },
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.hadron.total },
+        require: 'ee9e15',
+        logHeight: 3,
+    }
+
 ]
 
 function increaseFeature(v) {
