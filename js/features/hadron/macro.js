@@ -1,23 +1,7 @@
 const macroFunctions = {
   "SINGULARITY": {
     description: "Performs a singularity reset",
-    execute: () => { get require() { return player.fish.gte(CURRENCIES['dark-matter'].require) && player.singularity.bh.gte(8) },
-        reset(force) {
-            if (!force) {
-                gainCurrency('dark-matter',tmp.currency_gain['dark-matter'])
-                player.singularity.sac_times++
-                increaseFeature(19)
-            }
-
-            this.doReset()
-        },
-        doReset() {
-            player.singularity.bh = player.research.dm1
-
-            if (!hasSMilestone(10)) resetResearch('s1','s2','s3');
-
-            RESETS["black-hole"].doReset()
-        }, }
+    execute: () => { RESETS["black-hole"].doReset() }, 
   },
   "ENTER-GAL-EXPLORE": {
     description: "Enters a galactic exploration oceans",
@@ -30,52 +14,7 @@ const macroFunctions = {
   "HADRONIZE": {
     description: "Performs a Hadronize reset",
     execute: () => { hadron: {
-        get require() { return tmp.ss_difficulty == 0 && player.fish.gte(CURRENCIES.hadron.require) },
-        reset(force) {
-            let not_reset = true
-
-            if (!force && !tmp.bh_pause) {
-                if (player.hadron.times < 10) {
-                    not_reset = false
-                    tmp.bh_pause = true
-
-                    el('hadron-cutscene').style.pointerEvents = 'all'
-                    el('hadron-cutscene').style.opacity = 1
-
-                    setTimeout(() => {
-                        el('hadron-cutscene-text').style.opacity = 1
-
-                        let t = lang_text('hadron-cutscenes')
-                        el('hadron-cutscene-text').innerHTML = Math.random() < .1 ? `<img src='https://preview.redd.it/ki2tlww8buw71.jpg?width=640&crop=smart&auto=webp&s=272422f998facab8af8505fd812eae511fecf2a8'>` : t[Math.floor(Math.random()*t.length)]
-
-                        setTimeout(() => {
-                            el('hadron-cutscene-text').style.opacity = 0
-        
-                            setTimeout(() => {
-                                el('hadron-cutscene').style.opacity = 0
-
-                                tmp.bh_pause = false
-                                gainCurrency('hadron',tmp.currency_gain.hadron)
-                                player.hadron.times++
-                                increaseFeature(21)
-
-                                updateTemp()
-                                this.doReset()
-
-                                setTimeout(() => {
-                                    el('hadron-cutscene').style.pointerEvents = 'none'
-                                }, 5000);
-                            }, 5000);
-                        }, 10000);
-                    }, 5000);
-                } else {
-                    gainCurrency('hadron',tmp.currency_gain.hadron)
-                    player.hadron.times++
-                    increaseFeature(21)
-                }
-            }
-
-            if (!tmp.bh_pause && not_reset) this.doReset();
+        get require() { if (!tmp.bh_pause && not_reset) this.doReset();
         },
         doReset() {
             const DATA = getPlayerData()
@@ -145,10 +84,10 @@ const macroFunctions = {
   },
   "STOP": {
     description: "stops",
-    execute: () => { /* game logic to stop the macro */ }
+    execute: () => { // wip }
   },
   "END": {
     description: "ends",
-    execute: () => { /* game logic to end a block */ }
+    execute: () => { // game logic to end a block }
   }
 };
