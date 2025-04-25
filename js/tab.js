@@ -304,8 +304,6 @@ const TABS = [
             ["shark-tier",()=>player.hadron.starter_upgs.includes(0)],
             ['nucleobase',()=>player.feature>=22],
             ['gal-explore',()=>player.feature>=24],
-            ['anti-observe',()=>player.feature>=25],
-            ['macro',()=>player.feature>=27],
         ],
         style: {
             "background": `#ff8 repeating-conic-gradient(#0000 0 25%, #f802 0 50%)`,
