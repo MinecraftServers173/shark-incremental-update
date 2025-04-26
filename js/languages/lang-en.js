@@ -115,6 +115,8 @@ LANGUAGES.EN = {
         'tab-shark-tier': toTextStyle('Shark','shark') + " Tier",
         'tab-nucleobase': "Nucleobases",
         'tab-gal-explore': "Galactic Exploration",
+        'tab-anti-observe': "Anti-Observation",
+        'tab-macro': "Macro Bulider",
 
         // Elements
 
@@ -1036,6 +1038,7 @@ LANGUAGES.EN = {
         'progress-22-text': r => `Reach ${format(r)} total ${toTextStyle('Fundamental Particles','hadron')} to unlock the third nucleobase`, 
         'progress-23-text': r => `Reach ${toTextStyle('Shark','shark')} Tier ${format(r,0)} to unlock the next feature`,
         'progress-24-text': r => `Reach ${format(r)} total ${toTextStyle('Fundamental Particles','hadron')} to unlock the fourth nucleobase`, 
+        'progress-25-text': r => `Reach ${format(r)} total ${toTextStyle('Fundamental Particles','hadron')} to unlock Anti-Observation`,
 
         'maxed-progress': "All features unlocked!",
 
